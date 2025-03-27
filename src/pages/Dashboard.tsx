@@ -16,7 +16,6 @@ import {
   Bell, 
   Calendar, 
   Info, 
-  Line, 
   LineChart, 
   Menu, 
   Plus 

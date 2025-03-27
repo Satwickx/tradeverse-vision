@@ -145,7 +145,6 @@ const Navbar: React.FC = () => {
             <Input
               placeholder="Search stocks, ETFs, indices..."
               className="w-full"
-              prefix={<Search className="h-4 w-4 text-muted-foreground" />}
             />
           </div>
         </div>

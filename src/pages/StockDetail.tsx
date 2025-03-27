@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -560,21 +559,24 @@ const StockDetail: React.FC = () => {
                                     <span className="text-xs">Buy</span>
                                     <span className="text-xs">{buyPercentage.toFixed(1)}%</span>
                                   </div>
-                                  <Progress value={buyPercentage} className="h-2 bg-secondary" indicatorClassName="bg-success" />
+                                  <Progress value={buyPercentage} className="h-2 bg-secondary" 
+                                    style={{ backgroundColor: 'var(--success)' }} />
                                 </div>
                                 <div>
                                   <div className="flex justify-between items-center mb-1">
                                     <span className="text-xs">Hold</span>
                                     <span className="text-xs">{holdPercentage.toFixed(1)}%</span>
                                   </div>
-                                  <Progress value={holdPercentage} className="h-2 bg-secondary" indicatorClassName="bg-warning" />
+                                  <Progress value={holdPercentage} className="h-2 bg-secondary"
+                                    style={{ backgroundColor: 'var(--warning)' }} />
                                 </div>
                                 <div>
                                   <div className="flex justify-between items-center mb-1">
                                     <span className="text-xs">Sell</span>
                                     <span className="text-xs">{sellPercentage.toFixed(1)}%</span>
                                   </div>
-                                  <Progress value={sellPercentage} className="h-2 bg-secondary" indicatorClassName="bg-danger" />
+                                  <Progress value={sellPercentage} className="h-2 bg-secondary"
+                                    style={{ backgroundColor: 'var(--danger)' }} />
                                 </div>
                               </div>
                             </div>
@@ -712,123 +714,4 @@ const StockDetail: React.FC = () => {
                           <p className="text-sm text-muted-foreground">{insight.content}</p>
                           <div className="mt-3 flex items-center">
                             <div className="text-xs font-medium">Confidence:</div>
-                            <div className="ml-2 h-1.5 bg-secondary rounded-full flex-1 overflow-hidden">
-                              <div 
-                                className={cn(
-                                  "h-full rounded-full",
-                                  insight.confidence > 80 ? "bg-success" : 
-                                  insight.confidence > 60 ? "bg-info" : "bg-warning"
-                                )}
-                                style={{ width: `${insight.confidence}%` }}
-                              />
-                            </div>
-                            <div className="ml-2 text-xs font-medium">{insight.confidence}%</div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                    
-                    <Button variant="outline" size="sm" className="w-full">
-                      View Full AI Report
-                    </Button>
-                  </CardContent>
-                </Card>
-                
-                {/* Related Stocks */}
-                <Card>
-                  <CardHeader>
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="h-5 w-5 text-primary-blue" />
-                      <CardTitle className="text-lg">Related Stocks</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center p-2 hover:bg-secondary rounded-lg transition-colors">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-secondary rounded-md flex items-center justify-center">
-                            <span className="text-xs font-medium">MSFT</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Microsoft</div>
-                            <div className="text-xs text-muted-foreground">Technology</div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-medium">$380.89</div>
-                          <div className="text-xs text-success flex items-center justify-end">
-                            <ArrowUpRight className="h-3 w-3 mr-0.5" />
-                            1.14%
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center p-2 hover:bg-secondary rounded-lg transition-colors">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-secondary rounded-md flex items-center justify-center">
-                            <span className="text-xs font-medium">GOOGL</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Alphabet</div>
-                            <div className="text-xs text-muted-foreground">Technology</div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-medium">$142.56</div>
-                          <div className="text-xs text-danger flex items-center justify-end">
-                            <ArrowDownRight className="h-3 w-3 mr-0.5" />
-                            0.87%
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center p-2 hover:bg-secondary rounded-lg transition-colors">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-secondary rounded-md flex items-center justify-center">
-                            <span className="text-xs font-medium">AMZN</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Amazon</div>
-                            <div className="text-xs text-muted-foreground">Consumer Cyclical</div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-medium">$174.42</div>
-                          <div className="text-xs text-success flex items-center justify-end">
-                            <ArrowUpRight className="h-3 w-3 mr-0.5" />
-                            1.08%
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center p-2 hover:bg-secondary rounded-lg transition-colors">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-secondary rounded-md flex items-center justify-center">
-                            <span className="text-xs font-medium">META</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Meta Platforms</div>
-                            <div className="text-xs text-muted-foreground">Communication</div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-medium">$463.28</div>
-                          <div className="text-xs text-success flex items-center justify-end">
-                            <ArrowUpRight className="h-3 w-3 mr-0.5" />
-                            2.31%
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
-};
-
-export default StockDetail;
+                            <div className
