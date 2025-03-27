@@ -12,6 +12,7 @@ import {
   LineChart 
 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About: React.FC = () => {
   return (
@@ -42,8 +43,14 @@ const About: React.FC = () => {
         <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="aspect-video bg-gradient-to-br from-primary-blue to-blue-400 rounded-lg shadow-lg"></div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <AspectRatio ratio={16/9}>
+                  <img 
+                    src="/images/trading-office.jpg" 
+                    alt="Our trading office" 
+                    className="w-full h-full object-cover"
+                  />
+                </AspectRatio>
               </div>
               <div>
                 <h2 className="text-3xl font-bold mb-6">Our Story</h2>
@@ -107,7 +114,13 @@ const About: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="aspect-square bg-primary-blue/20 rounded-full mb-4 mx-auto w-40 h-40"></div>
+                <div className="aspect-square rounded-full mb-4 mx-auto w-40 h-40 overflow-hidden">
+                  <img 
+                    src="/images/team-member-1.jpg" 
+                    alt="Sarah Johnson" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">Sarah Johnson</h3>
                 <p className="text-sm text-muted-foreground mb-2">Co-Founder & CEO</p>
                 <p className="text-sm text-muted-foreground">
@@ -116,7 +129,13 @@ const About: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="aspect-square bg-primary-blue/20 rounded-full mb-4 mx-auto w-40 h-40"></div>
+                <div className="aspect-square rounded-full mb-4 mx-auto w-40 h-40 overflow-hidden">
+                  <img 
+                    src="/images/team-member-2.jpg" 
+                    alt="David Chen" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">David Chen</h3>
                 <p className="text-sm text-muted-foreground mb-2">Co-Founder & CTO</p>
                 <p className="text-sm text-muted-foreground">
@@ -125,7 +144,13 @@ const About: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="aspect-square bg-primary-blue/20 rounded-full mb-4 mx-auto w-40 h-40"></div>
+                <div className="aspect-square rounded-full mb-4 mx-auto w-40 h-40 overflow-hidden">
+                  <img 
+                    src="/images/team-member-3.jpg" 
+                    alt="Michael Okonjo" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">Michael Okonjo</h3>
                 <p className="text-sm text-muted-foreground mb-2">Chief Product Officer</p>
                 <p className="text-sm text-muted-foreground">
@@ -134,7 +159,13 @@ const About: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="aspect-square bg-primary-blue/20 rounded-full mb-4 mx-auto w-40 h-40"></div>
+                <div className="aspect-square rounded-full mb-4 mx-auto w-40 h-40 overflow-hidden">
+                  <img 
+                    src="/images/team-member-4.jpg" 
+                    alt="Elena Petrov" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">Elena Petrov</h3>
                 <p className="text-sm text-muted-foreground mb-2">Chief Financial Officer</p>
                 <p className="text-sm text-muted-foreground">
@@ -155,7 +186,7 @@ const About: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary-blue mb-2">$2.5B+</div>
+                <div className="text-4xl font-bold text-primary-blue mb-2">₹200 Cr+</div>
                 <p className="text-muted-foreground">Assets Tracked</p>
               </div>
               
@@ -172,9 +203,16 @@ const About: React.FC = () => {
           </div>
         </section>
         
-        {/* Investors Section */}
-        <section className="py-16 md:py-24 bg-primary-blue text-white">
-          <div className="container mx-auto px-4 text-center">
+        {/* Investors Section with Background Image */}
+        <section className="py-16 md:py-24 bg-primary-blue text-white relative">
+          <div className="absolute inset-0 z-0 opacity-20">
+            <img 
+              src="/images/investors-bg.jpg" 
+              alt="Investors background" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-3xl font-bold mb-12">Backed By World-Class Investors</h2>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">

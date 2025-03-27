@@ -42,7 +42,7 @@ const Pricing: React.FC = () => {
                       <CardTitle>Basic</CardTitle>
                       <CardDescription>For individual investors just getting started</CardDescription>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">$9</span>
+                        <span className="text-4xl font-bold">₹749</span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
                     </CardHeader>
@@ -88,7 +88,7 @@ const Pricing: React.FC = () => {
                       <CardTitle>Pro</CardTitle>
                       <CardDescription>For active investors who want deeper insights</CardDescription>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">$29</span>
+                        <span className="text-4xl font-bold">₹2,399</span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
                     </CardHeader>
@@ -131,7 +131,7 @@ const Pricing: React.FC = () => {
                       <CardTitle>Enterprise</CardTitle>
                       <CardDescription>For professional traders and investment firms</CardDescription>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">$99</span>
+                        <span className="text-4xl font-bold">₹8,199</span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
                     </CardHeader>
@@ -178,10 +178,10 @@ const Pricing: React.FC = () => {
                       <CardTitle>Basic</CardTitle>
                       <CardDescription>For individual investors just getting started</CardDescription>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">$7</span>
+                        <span className="text-4xl font-bold">₹599</span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
-                      <p className="text-sm text-success mt-1">Save $24 per year</p>
+                      <p className="text-sm text-success mt-1">Save ₹1,800 per year</p>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-3">
@@ -225,10 +225,10 @@ const Pricing: React.FC = () => {
                       <CardTitle>Pro</CardTitle>
                       <CardDescription>For active investors who want deeper insights</CardDescription>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">$23</span>
+                        <span className="text-4xl font-bold">₹1,899</span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
-                      <p className="text-sm text-success mt-1">Save $72 per year</p>
+                      <p className="text-sm text-success mt-1">Save ₹6,000 per year</p>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-3">
@@ -269,10 +269,10 @@ const Pricing: React.FC = () => {
                       <CardTitle>Enterprise</CardTitle>
                       <CardDescription>For professional traders and investment firms</CardDescription>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">$79</span>
+                        <span className="text-4xl font-bold">₹6,559</span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
-                      <p className="text-sm text-success mt-1">Save $240 per year</p>
+                      <p className="text-sm text-success mt-1">Save ₹19,680 per year</p>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-3">
