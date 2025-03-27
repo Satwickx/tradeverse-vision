@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -559,7 +560,7 @@ const StockDetail: React.FC = () => {
                                     <span className="text-xs">Buy</span>
                                     <span className="text-xs">{buyPercentage.toFixed(1)}%</span>
                                   </div>
-                                  <Progress value={buyPercentage} className="h-2 bg-secondary" 
+                                  <Progress value={buyPercentage} className="h-2" 
                                     style={{ backgroundColor: 'var(--success)' }} />
                                 </div>
                                 <div>
@@ -567,7 +568,7 @@ const StockDetail: React.FC = () => {
                                     <span className="text-xs">Hold</span>
                                     <span className="text-xs">{holdPercentage.toFixed(1)}%</span>
                                   </div>
-                                  <Progress value={holdPercentage} className="h-2 bg-secondary"
+                                  <Progress value={holdPercentage} className="h-2"
                                     style={{ backgroundColor: 'var(--warning)' }} />
                                 </div>
                                 <div>
@@ -575,7 +576,7 @@ const StockDetail: React.FC = () => {
                                     <span className="text-xs">Sell</span>
                                     <span className="text-xs">{sellPercentage.toFixed(1)}%</span>
                                   </div>
-                                  <Progress value={sellPercentage} className="h-2 bg-secondary"
+                                  <Progress value={sellPercentage} className="h-2"
                                     style={{ backgroundColor: 'var(--danger)' }} />
                                 </div>
                               </div>
@@ -714,4 +715,33 @@ const StockDetail: React.FC = () => {
                           <p className="text-sm text-muted-foreground">{insight.content}</p>
                           <div className="mt-3 flex items-center">
                             <div className="text-xs font-medium">Confidence:</div>
-                            <div className
+                            <div className="ml-2 w-full max-w-24">
+                              <Progress 
+                                value={insight.confidence} 
+                                className="h-1.5"
+                                style={{ 
+                                  backgroundColor: insight.confidence > 70 ? 
+                                    'var(--success)' : insight.confidence > 50 ? 
+                                    'var(--warning)' : 'var(--danger)'
+                                }}
+                              />
+                            </div>
+                            <div className="ml-2 text-xs">
+                              {insight.confidence}%
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default StockDetail;
