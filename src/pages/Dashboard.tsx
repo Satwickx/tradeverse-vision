@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -30,10 +29,10 @@ import { cn } from '@/lib/utils';
 
 // Market indices mock data
 const marketIndices = [
-  { id: 1, name: 'S&P 500', symbol: 'SPX', value: 5,021.84, change: 18.36, changePercent: 0.37 },
-  { id: 2, name: 'Nasdaq', symbol: 'IXIC', value: 15,990.66, change: 54.83, changePercent: 0.34 },
-  { id: 3, name: 'Dow Jones', symbol: 'DJI', value: 38,996.39, change: 125.69, changePercent: 0.32 },
-  { id: 4, name: 'Russell 2000', symbol: 'RUT', value: 2,027.56, change: -8.32, changePercent: -0.41 },
+  { id: 1, name: 'S&P 500', symbol: 'SPX', value: 5021.84, change: 18.36, changePercent: 0.37 },
+  { id: 2, name: 'Nasdaq', symbol: 'IXIC', value: 15990.66, change: 54.83, changePercent: 0.34 },
+  { id: 3, name: 'Dow Jones', symbol: 'DJI', value: 38996.39, change: 125.69, changePercent: 0.32 },
+  { id: 4, name: 'Russell 2000', symbol: 'RUT', value: 2027.56, change: -8.32, changePercent: -0.41 },
 ];
 
 const Dashboard: React.FC = () => {
