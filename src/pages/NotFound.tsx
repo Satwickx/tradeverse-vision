@@ -1,8 +1,8 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { FileQuestion } from "lucide-react";
+import { FileQuestion, Home, HelpCircle, Info } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -28,10 +28,28 @@ const NotFound = () => {
         </p>
         <div className="space-y-4">
           <Button asChild size="lg" className="w-full sm:w-auto">
-            <a href="/">Return to Home</a>
+            <Link to="/">Return to Home</Link>
           </Button>
-          <div className="text-sm text-gray-500">
-            Or check out our <a href="/support" className="text-primary-blue hover:underline">help center</a> for assistance
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link to="/features" className="flex flex-col items-center p-3 hover:bg-gray-200 rounded-lg transition-colors">
+              <Info className="h-6 w-6 mb-1 text-primary-blue" />
+              <span className="text-sm">Features</span>
+            </Link>
+            <Link to="/pricing" className="flex flex-col items-center p-3 hover:bg-gray-200 rounded-lg transition-colors">
+              <Info className="h-6 w-6 mb-1 text-primary-blue" />
+              <span className="text-sm">Pricing</span>
+            </Link>
+            <Link to="/support" className="flex flex-col items-center p-3 hover:bg-gray-200 rounded-lg transition-colors">
+              <HelpCircle className="h-6 w-6 mb-1 text-primary-blue" />
+              <span className="text-sm">Support</span>
+            </Link>
+            <Link to="/about" className="flex flex-col items-center p-3 hover:bg-gray-200 rounded-lg transition-colors">
+              <Info className="h-6 w-6 mb-1 text-primary-blue" />
+              <span className="text-sm">About</span>
+            </Link>
+          </div>
+          <div className="text-sm text-gray-500 mt-4">
+            Need help? Visit our <Link to="/support" className="text-primary-blue hover:underline">help center</Link> for assistance
           </div>
         </div>
       </div>
