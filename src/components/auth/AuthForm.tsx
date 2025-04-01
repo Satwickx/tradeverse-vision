@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Eye, EyeOff, LockKeyhole, Mail, ShieldCheck, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from '@/hooks/use-toast';
+import { useAuth } from '@/context/AuthContext';
 
 interface AuthFormProps {
   className?: string;
@@ -22,7 +23,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   onSuccess
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { signIn, signUp, isLoading } = useAuth();
   
   // Login form state
   const [loginEmail, setLoginEmail] = useState('');
@@ -35,26 +36,20 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      // For demo purposes, let's pretend the login was successful
-      toast({
-        title: "Logged in successfully",
-        description: "Welcome back to MarketFlow!",
-      });
-      setLoading(false);
-      
+    try {
+      await signIn(loginEmail, loginPassword);
       if (onSuccess) {
         onSuccess();
       }
-    }, 1500);
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
   
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -76,21 +71,14 @@ const AuthForm: React.FC<AuthFormProps> = ({
       return;
     }
     
-    setLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      // For demo purposes, let's pretend the registration was successful
-      toast({
-        title: "Account created successfully",
-        description: "Welcome to MarketFlow! You are now logged in.",
-      });
-      setLoading(false);
-      
+    try {
+      await signUp(email, password, name);
       if (onSuccess) {
         onSuccess();
       }
-    }, 1500);
+    } catch (error) {
+      console.error("Registration error:", error);
+    }
   };
   
   return (
@@ -160,8 +148,8 @@ const AuthForm: React.FC<AuthFormProps> = ({
               <Label htmlFor="remember" className="text-sm">Remember me for 30 days</Label>
             </div>
             
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Login"}
             </Button>
             
             <div className="relative my-6">
@@ -311,8 +299,8 @@ const AuthForm: React.FC<AuthFormProps> = ({
               </Label>
             </div>
             
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating account..." : "Create account"}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Creating account..." : "Create account"}
             </Button>
             
             <div className="relative my-6">

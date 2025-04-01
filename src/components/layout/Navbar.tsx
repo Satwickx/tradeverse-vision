@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Bell, 
   ChevronDown, 
   HelpCircle, 
+  LogOut,
   Menu, 
   Moon, 
   Search, 
@@ -22,14 +23,34 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/context/AuthContext';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, profile, signOut, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     // Add actual dark mode toggle implementation here
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
+  const getInitials = () => {
+    if (profile?.full_name) {
+      return profile.full_name
+        .split(' ')
+        .map(name => name[0])
+        .join('')
+        .toUpperCase()
+        .substring(0, 2);
+    }
+    return user?.email?.substring(0, 2).toUpperCase() || "U";
   };
 
   return (
@@ -90,37 +111,49 @@ const Navbar: React.FC = () => {
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 rounded-full bg-secondary px-2 py-1.5">
-                  <div className="h-6 w-6 rounded-full bg-primary-blue text-white flex items-center justify-center">
-                    <User className="h-4 w-4" />
-                  </div>
-                  <span className="text-sm font-medium hidden sm:block">Account</span>
-                  <ChevronDown className="h-4 w-4 text-muted-foreground hidden sm:block" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="h-4 w-4 mr-2" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="h-4 w-4 mr-2" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <HelpCircle className="h-4 w-4 mr-2" />
-                  <span>Help & Support</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-destructive">
-                  Log out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 rounded-full bg-secondary px-2 py-1.5">
+                    <Avatar className="h-6 w-6">
+                      <AvatarImage src={profile?.avatar_url} />
+                      <AvatarFallback className="bg-primary-blue text-white text-xs">
+                        {getInitials()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-sm font-medium hidden sm:block">
+                      {profile?.full_name || user?.email?.split('@')[0]}
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-muted-foreground hidden sm:block" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <User className="h-4 w-4 mr-2" />
+                    <span>Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Settings className="h-4 w-4 mr-2" />
+                    <span>Settings</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <HelpCircle className="h-4 w-4 mr-2" />
+                    <span>Help & Support</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button onClick={() => navigate('/auth')} size="sm">
+                Sign In
+              </Button>
+            )}
 
             {/* Mobile menu button */}
             <button 
@@ -147,6 +180,16 @@ const Navbar: React.FC = () => {
               className="w-full"
             />
           </div>
+          {isAuthenticated && (
+            <Button 
+              onClick={handleSignOut} 
+              variant="destructive" 
+              className="w-full mt-4"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Log Out
+            </Button>
+          )}
         </div>
       )}
     </header>
